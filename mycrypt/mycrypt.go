@@ -1,5 +1,9 @@
 package mycrypt
 
+import (
+	"fmt"
+)
+
 var ALF_SEM03 []rune = []rune("abcdefghijklmnopqrstuvwxyzæøå0123456789.,:; ")
 
 func Krypter(melding []rune, alphabet []rune, chiffer int) []rune {
@@ -32,9 +36,22 @@ func sokIAlfabetet(symbol rune, alfabet []rune) int {
 	for i := 0; i < len(alfabet); i++ {
 		if symbol == alfabet[i] {
 			return i
-			break
 		}
 	}
 	return -1
+}
+
+func main() {
+	alphabet := ALF_SEM03
+	chiffer := 3
+
+	originalMessage := []rune("ping")
+	fmt.Println("Original message:", string(originalMessage))
+
+	encryptedMessage := Krypter(originalMessage, alphabet, chiffer)
+	fmt.Println("Encrypted message:", string(encryptedMessage))
+
+	decryptedMessage := DeKrypter(encryptedMessage, alphabet, chiffer)
+	fmt.Println("Decrypted message:", string(decryptedMessage))
 }
 
